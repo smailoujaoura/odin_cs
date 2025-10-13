@@ -13,6 +13,7 @@ function iterativeFibs(length) {
 // console.table( iterativeFibs(8));
 
 function fibs(len) {
+	console.log("This was printed recursively");
 	if (len <= 2) {
 		return len === 0? [] : len === 1 ? [0] : [0, 1];
 	}

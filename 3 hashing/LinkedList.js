@@ -1,3 +1,5 @@
+import Node from "./Node.js"
+
 export default class LinkedList {
 	constructor() {
 		this._root = null;

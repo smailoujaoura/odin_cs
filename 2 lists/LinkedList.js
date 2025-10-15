@@ -1,3 +1,5 @@
+import Node from "./Node.js";
+
 export default class LinkedList {
 	constructor() {
 		this._root = null;
@@ -145,6 +147,45 @@ export default class LinkedList {
 			prev.next = ptr.next;
 			this._size--;
 		}
+	}
+
+	// forEach(callback) {
+	// 	let ptr = this._root;
+	// 	while (ptr) {
+	// 		callback(ptr.value);
+	// 		ptr = ptr.next;
+	// 	}
+	// }
+	[Symbol.iterator]() {
+		let current = this._root;
+		return {
+			next() {
+				if (current) {
+					const value = current.value;
+					current = current.next;
+					return {value, done: false};
+				} else {
+					return {value: undefined, done: true};
+				}
+			}
+		};
+	}
+
+	dequeue() {
+		if (!this._root) {
+			return null;
+		}
+		const value = this._root.value;
+		this._root = this._root.next;
+		this._size--;
+		if (this._size === 0) {
+			this._tail = null;
+		}
+		return value;
+	}
+
+	enqueue(value) {
+		this.append(value);
 	}
 }
 
